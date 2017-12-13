@@ -16,5 +16,15 @@ namespace BookStore.Common.BookServiceClient
 
             return JsonConvert.DeserializeObject<List<Book>>(json);
         }
+
+        public Book GetBook(string id)
+        {
+            var response = httpClient.GetAsync($"http://localhost:55328/api/books/{id}").Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<Book>(json);
+        }
+      
+
     }
 }
