@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Common.PurchaseServiceClient.Models
 {
-    class CartItem
+    public class CartItem
     {
         public int Id { get; set; }
         public int CartId { get; set; }
