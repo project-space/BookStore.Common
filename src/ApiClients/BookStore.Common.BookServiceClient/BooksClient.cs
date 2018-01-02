@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 
 namespace BookStore.Common.BookServiceClient
 {
@@ -17,9 +18,13 @@ namespace BookStore.Common.BookServiceClient
             return JsonConvert.DeserializeObject<List<Book>>(json);
         }
 
-        public List<Book> GetBooks(List<int> ids)
+        public List<Book> GetBooks(int[] ids)
         {
-            
+            HttpContent content = new StringContent(JsonConvert.SerializeObject(ids), Encoding.UTF8, "application/json");
+            var response = httpClient.PostAsync($"http://localhost:55328/api/books/byIds", content).Result;
+            var json = response.Content.ReadAsStringAsync().Result;
+
+            return JsonConvert.DeserializeObject<List<Book>>(json);
         }
 
         public Book GetBook(string id)
