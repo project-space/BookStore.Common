@@ -19,11 +19,11 @@ namespace BookStore.Common.PurchaseServiceClient
             httpClient.PostAsync($"http://localhost:50200/api/cart-items/add", content).Wait();
         }
 
-        public void DeleteCartItem(CartItem item)
+        public void DeleteCartItem(int id)
         {
-            HttpContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-            httpClient.PostAsync($"http://localhost:50200/api/cart-items/delete", content).Wait();
+            httpClient.DeleteAsync($"http://localhost:50200/api/cart-items/delete/{id}").Wait();
         }
+
 
         public List<CartItem> GetItems(int cartId)
         {
