@@ -16,9 +16,9 @@ namespace BookStore.Common.BookServiceClient
             this.httpExecutor = httpExecutor;
         }
 
-        public async Task<Genre> GetGenre(string action)
+        public async Task<Genre> GetGenre(int id)
         {
-            return await httpExecutor.Get<Genre>($"http://localhost:55328/api/genres/{action}");
+            return await httpExecutor.Get<Genre>($"http://localhost:55328/api/genres/genres/{id}");
 
             /*
             var response = httpClient.GetAsync($"http://localhost:55328/api/genres/{action}").Result;

@@ -28,6 +28,11 @@ namespace BookStore.Common.BookServiceClient
             return await httpExecutor.Get<List<Book>>($"http://localhost:55328/api/books/novelties");
         }
 
+        public async Task<List<Book>> GetWithGenre(int id)
+        {
+            return await httpExecutor.Get<List<Book>>($"http://localhost:55328/api/books/withGenre/{id}");
+        }
+
         public async Task<List<Book>> GetBooks(List<int> ids)
         {
             return await httpExecutor.Post<List<Book>,List<int>>($"http://localhost:55328/api/books/byIds", ids);
