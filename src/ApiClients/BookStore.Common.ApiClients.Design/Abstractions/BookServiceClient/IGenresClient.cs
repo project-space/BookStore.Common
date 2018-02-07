@@ -9,7 +9,7 @@ namespace BookStore.Common.ApiClients.Design.Abstractions.BookServiceClient
 {
     public interface IGenresClient
     {
-        Task<Genre> GetGenre(string action);
+        Task<Genre> GetGenre(int id);
         Task<List<Genre>> GetGenres();
     }
 }

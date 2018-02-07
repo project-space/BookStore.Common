@@ -11,6 +11,7 @@ namespace BookStore.Common.ApiClients.Design.Abstractions.BookServiceClient
     {
         Task<List<Book>> GetPopular();
         Task<List<Book>> GetNovelties();
+        Task<List<Book>> GetWithGenre(int id);
         Task<List<Book>> GetBooks(List<int> ids);
         Task<Book> GetBook(int id);
     }
