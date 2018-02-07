@@ -44,6 +44,7 @@
     <Compile Include="Abstractions\BookServiceClient\IGenresClient.cs" />
     <Compile Include="Abstractions\PurchaseServiceClient\ICartItemClient.cs" />
     <Compile Include="Abstractions\PurchaseServiceClient\ICartsClient.cs" />
+    <Compile Include="Abstractions\PurchaseServiceClient\IPurchaseClient.cs" />
     <Compile Include="Models\BookServiceClient\Book.cs" />
     <Compile Include="Models\BookServiceClient\Genre.cs" />
     <Compile Include="Models\PurchaseServiceClient\Cart.cs" />
