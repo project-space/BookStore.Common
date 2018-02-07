@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Common.PurchaseServiceClient.Models
+namespace BookStore.Common.ApiClients.Design.Models
 {
     public class CartItem
     {

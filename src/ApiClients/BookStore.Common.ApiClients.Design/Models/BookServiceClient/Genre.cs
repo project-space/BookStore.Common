@@ -1,4 +1,4 @@
-﻿namespace BookStore.Common.BookServiceClient.Models
+﻿namespace BookStore.Common.ApiClients.Design.Models
 {
     public class Genre
     {
