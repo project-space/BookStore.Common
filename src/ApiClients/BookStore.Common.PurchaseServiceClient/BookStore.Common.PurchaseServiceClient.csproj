@@ -46,14 +46,21 @@
   <ItemGroup>
     <Compile Include="CartItemClient.cs" />
     <Compile Include="CartsClient.cs" />
-    <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BookStore.Common.HttpRequestExecutor.Design\BookStore.Common.HttpRequestExecutor.Design.csproj">
+      <Project>{cc0d1e91-59bb-45a3-b339-ca23152253f7}</Project>
+      <Name>BookStore.Common.HttpRequestExecutor.Design</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookStore.Common.ApiClients.Design\BookStore.Common.ApiClients.Design.csproj">
+      <Project>{b4e4344a-996a-4994-ba4a-efb2ad8f6982}</Project>
+      <Name>BookStore.Common.ApiClients.Design</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
