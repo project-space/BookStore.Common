@@ -1,6 +1,5 @@
 ﻿using BookStore.Common.ApiClients.Design.Models;
 using BookStore.Common.HttpRequestExecutor.Design;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;

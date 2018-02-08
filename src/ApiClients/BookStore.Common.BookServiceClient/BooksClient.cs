@@ -1,10 +1,7 @@
 ﻿using BookStore.Common.ApiClients.Design.Abstractions.BookServiceClient;
 using BookStore.Common.ApiClients.Design.Models;
 using BookStore.Common.HttpRequestExecutor.Design;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore.Common.BookServiceClient
