@@ -1,4 +1,5 @@
-﻿using BookStore.Common.ApiClients.Design.Models;
+﻿using BookStore.Common.ApiClients.Design.Abstractions.PurchaseServiceClient;
+using BookStore.Common.ApiClients.Design.Models;
 using BookStore.Common.HttpRequestExecutor.Design;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Common.PurchaseServiceClient
 {
-    public class PurchaseClient
+    public class PurchaseClient : IPurchaseClient
     {
 
         private readonly IHttpExecutor httpExecutor;

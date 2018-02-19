@@ -1,4 +1,5 @@
-﻿using BookStore.Common.ApiClients.Design.Models;
+﻿using BookStore.Common.ApiClients.Design.Abstractions.BookServiceClient;
+using BookStore.Common.ApiClients.Design.Models;
 using BookStore.Common.HttpRequestExecutor.Design;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Common.BookServiceClient
 {
-    public class GenresClient
+    public class GenresClient : IGenresClient
     {
         private readonly IHttpExecutor httpExecutor;
 
