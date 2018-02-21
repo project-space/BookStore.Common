@@ -22,7 +22,7 @@ namespace BookStore.Common.PurchaseServiceClient
 
         public async Task<int> CreatePurchase(Order order)
         {
-            return await httpExecutor.Post<int, Order>($"http://localhost:50200/api/purchase/create", order);
+            return await httpExecutor.Post<int, Order>($"http://localhost:50200/api/purchase/create", order).ConfigureAwait(false);
             /*
             HttpContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
             httpClient.PostAsync($"http://localhost:50200/api/purchase/create", content).Wait();

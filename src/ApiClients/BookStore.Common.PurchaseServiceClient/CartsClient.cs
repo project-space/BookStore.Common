@@ -23,7 +23,7 @@ namespace BookStore.Common.PurchaseServiceClient
         public async Task<Cart> GetCart()
         {
 
-            return await httpExecutor.Get<Cart>($"http://localhost:50200//api/cart");
+            return await httpExecutor.Get<Cart>($"http://localhost:50200//api/cart").ConfigureAwait(false);
             
             /*
             var response = httpClient.GetAsync($"http://localhost:50200//api/cart").Result;
