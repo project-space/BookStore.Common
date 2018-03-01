@@ -25,6 +25,5 @@ namespace BookStore.Common.BookServiceClient
 
         public async Task<Book> GetBook(int id) => await httpExecutor.Get<Book>($"http://localhost:55328/api/books/{id}").ConfigureAwait(false);
 
-
     }
 }

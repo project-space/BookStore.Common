@@ -29,7 +29,7 @@ namespace BookStore.Common.PurchaseServiceClient
             **/
         }
 
-        public async void DeleteCartItem(int id)
+        public async Task DeleteCartItem(int id)
         {
             await httpExecutor.Delete($"http://localhost:50200/api/cart-items/delete/{id}").ConfigureAwait(false);
 
