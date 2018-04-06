@@ -16,6 +16,5 @@ namespace BookStore.Common.HttpRequestExecutor
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JsonConvert.DeserializeObject<T>(content);
         }
-
     }
 }

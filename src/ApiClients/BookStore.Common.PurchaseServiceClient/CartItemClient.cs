@@ -1,11 +1,7 @@
 ﻿using BookStore.Common.ApiClients.Design.Abstractions.PurchaseServiceClient;
 using BookStore.Common.ApiClients.Design.Models;
 using BookStore.Common.HttpRequestExecutor.Design;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 
@@ -24,7 +20,9 @@ namespace BookStore.Common.PurchaseServiceClient
         public async Task<int> AddCartItem(CartItem item)
         {
             return await httpExecutor.Post<int,CartItem>($"http://localhost:50200/api/cart-items/add", item).ConfigureAwait(false);
+
             /**
+            HttpClient httpClient = new HttpClient();
             HttpContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
             httpClient.PostAsync($"http://localhost:50200/api/cart-items/add", content).Wait();
             **/

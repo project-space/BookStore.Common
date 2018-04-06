@@ -25,12 +25,7 @@ namespace BookStore.Common.PurchaseServiceClient
 
             return await httpExecutor.Get<Cart>($"http://localhost:50200//api/cart").ConfigureAwait(false);
             
-            /*
-            var response = httpClient.GetAsync($"http://localhost:50200//api/cart").Result;
-            var json = response.Content.ReadAsStringAsync().Result;
 
-            return JsonConvert.DeserializeObject<Cart>(json);
-            */
         }
     }
 }
