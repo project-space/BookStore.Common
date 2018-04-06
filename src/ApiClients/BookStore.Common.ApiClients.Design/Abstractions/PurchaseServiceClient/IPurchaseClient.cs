@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Refit;
 
 namespace BookStore.Common.ApiClients.Design.Abstractions.PurchaseServiceClient
 {
     public interface IPurchaseClient
     {
-        Task<int> CreatePurchase(Order order);
+        [Post("/purchase/create")]
+        Task<int> CreatePurchase([Body] Order order);
     }
 }
