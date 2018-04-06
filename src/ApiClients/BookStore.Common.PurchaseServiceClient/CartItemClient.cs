@@ -23,16 +23,16 @@ namespace BookStore.Common.PurchaseServiceClient
 
         public async Task<int> AddCartItem(CartItem item)
         {
-            return await httpExecutor.Post<int,CartItem>($"http://localhost:50200/api/cart-items/add", item);
+            return await httpExecutor.Post<int,CartItem>($"http://localhost:50200/api/cart-items/add", item).ConfigureAwait(false);
             /**
             HttpContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
             httpClient.PostAsync($"http://localhost:50200/api/cart-items/add", content).Wait();
             **/
         }
 
-        public async void DeleteCartItem(int id)
+        public async Task DeleteCartItem(int id)
         {
-            await httpExecutor.Delete($"http://localhost:50200/api/cart-items/delete/{id}");
+            await httpExecutor.Delete($"http://localhost:50200/api/cart-items/delete/{id}").ConfigureAwait(false);
 
             /**
             httpClient.DeleteAsync($"http://localhost:50200/api/cart-items/delete/{id}").Wait();
@@ -42,7 +42,7 @@ namespace BookStore.Common.PurchaseServiceClient
 
         public async Task<List<CartItem>> GetItems(int cartId)
         {
-            return await httpExecutor.Get<List<CartItem>>($"http://localhost:50200//api/cart-items/getitems/{cartId}");
+            return await httpExecutor.Get<List<CartItem>>($"http://localhost:50200//api/cart-items/getitems/{cartId}").ConfigureAwait(false);
 
             /**
             var response = httpClient.GetAsync($"http://localhost:50200//api/cart-items/getitems/{cartId}").Result;

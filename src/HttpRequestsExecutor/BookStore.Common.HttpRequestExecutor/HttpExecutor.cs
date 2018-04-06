@@ -24,8 +24,8 @@ namespace BookStore.Common.HttpRequestExecutor
         {
             using (var request = new HttpRequestMessage(HttpMethod.Get, uri))
             {
-                var response = await requestSender.Send(request);
-                var deserialized = await responseDeserializer.Deserialize<TResponse>(response);
+                var response = await requestSender.Send(request).ConfigureAwait(false);
+                var deserialized = await responseDeserializer.Deserialize<TResponse>(response).ConfigureAwait(false);
 
                 return deserialized;
             }
@@ -38,9 +38,9 @@ namespace BookStore.Common.HttpRequestExecutor
                 var serializedBody = JsonConvert.SerializeObject(body);
                 request.Content = new StringContent(serializedBody, Encoding.UTF8, "application/json");
 
-                var response = await requestSender.Send(request);
+                var response = await requestSender.Send(request).ConfigureAwait(false);
 
-                return await responseDeserializer.Deserialize<TResponse>(response);
+                return await responseDeserializer.Deserialize<TResponse>(response).ConfigureAwait(false);
             }
         }
 
@@ -48,7 +48,7 @@ namespace BookStore.Common.HttpRequestExecutor
         {
             using (var request = new HttpRequestMessage(HttpMethod.Delete, uri))
             {
-                await requestSender.Send(request);
+                await requestSender.Send(request).ConfigureAwait(false);
             }
         }
     }

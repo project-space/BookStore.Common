@@ -14,7 +14,7 @@ namespace BookStore.Common.HttpRequestExecutor
 
         public async Task<HttpResponseMessage> Send(HttpRequestMessage request)
         {
-            var response = await httpClient.SendAsync(request);
+            var response = await httpClient.SendAsync(request).ConfigureAwait(false);
             return response;
         }
     }
