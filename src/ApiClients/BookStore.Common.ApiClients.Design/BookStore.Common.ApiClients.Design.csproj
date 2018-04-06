@@ -32,11 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Refit, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Refit.4.3.0\lib\net45\Refit.dll</HintPath>
+    <Reference Include="Refit">
+      <HintPath>..\..\..\..\..\packages\Refit.4.3.0\lib\net45\Refit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,5 +73,7 @@
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\..\packages\Refit.4.3.0\build\net45\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Refit.4.3.0\build\net45\refit.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\..\packages\Refit.4.3.0\build\net45\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\packages\Refit.4.3.0\build\net45\refit.targets'))" />
   </Target>
+  <Import Project="..\..\..\..\..\packages\Refit.4.3.0\build\net45\refit.targets" Condition="Exists('..\..\..\..\..\packages\Refit.4.3.0\build\net45\refit.targets')" />
 </Project>
