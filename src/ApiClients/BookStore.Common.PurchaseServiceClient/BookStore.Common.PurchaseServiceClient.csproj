@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Refit, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Refit.4.3.0\lib\net45\Refit.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Refit.4.3.0\lib\net45\Refit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,6 +52,9 @@
   <ItemGroup>
     <Compile Include="CartItemClient.cs" />
     <Compile Include="CartsClient.cs" />
+    <Compile Include="IClients%28Refit%29\ICartItemClientR.cs" />
+    <Compile Include="IClients%28Refit%29\ICartsClientR.cs" />
+    <Compile Include="IClients%28Refit%29\IPurchaseClientR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseClient.cs" />
   </ItemGroup>
@@ -66,15 +69,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\..\packages\Refit.4.3.0\build\net45\refit.targets" Condition="Exists('..\..\..\packages\Refit.4.3.0\build\net45\refit.targets')" />
+  <Import Project="$(SolutionDir)\packages\Refit.4.3.0\build\net45\refit.targets" Condition="Exists('$(SolutionDir)\packages\Refit.4.3.0\build\net45\refit.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\Refit.4.3.0\build\net45\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Refit.4.3.0\build\net45\refit.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\packages\Refit.4.3.0\build\net45\refit.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\packages\Refit.4.3.0\build\net45\refit.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

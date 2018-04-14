@@ -1,53 +1,20 @@
 ﻿using BookStore.Common.ApiClients.Design.Abstractions.PurchaseServiceClient;
 using BookStore.Common.ApiClients.Design.Models;
-using BookStore.Common.HttpRequestExecutor.Design;
+using BookStore.Common.PurchaseServiceClient.IClients_Refit_;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using Refit;
 
 namespace BookStore.Common.PurchaseServiceClient
 {
     public class CartItemClient : ICartItemClient
     {
-        private readonly IHttpExecutor httpExecutor;
+        private readonly ICartItemClientR cartItemClient = RestService.For<ICartItemClientR>("http://localhost:50200/");
 
-        public CartItemClient(IHttpExecutor httpExecutor)
-        {
-            this.httpExecutor = httpExecutor;
-        }
+        public async Task<int> AddCartItem(CartItem item) => await cartItemClient.AddCartItem(item).ConfigureAwait(false);
 
+        public async Task DeleteCartItem(int id) => await cartItemClient.DeleteCartItem(id).ConfigureAwait(false);
 
-        public async Task<int> AddCartItem(CartItem item)
-        {
-            return await httpExecutor.Post<int,CartItem>($"http://localhost:50200/api/cart-items/add", item).ConfigureAwait(false);
-
-            /**
-            HttpClient httpClient = new HttpClient();
-            HttpContent content = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-            httpClient.PostAsync($"http://localhost:50200/api/cart-items/add", content).Wait();
-            **/
-        }
-
-        public async Task DeleteCartItem(int id)
-        {
-            await httpExecutor.Delete($"http://localhost:50200/api/cart-items/delete/{id}").ConfigureAwait(false);
-
-            /**
-            httpClient.DeleteAsync($"http://localhost:50200/api/cart-items/delete/{id}").Wait();
-            **/
-        }
-
-
-        public async Task<List<CartItem>> GetItems(int cartId)
-        {
-            return await httpExecutor.Get<List<CartItem>>($"http://localhost:50200//api/cart-items/getitems/{cartId}").ConfigureAwait(false);
-
-            /**
-            var response = httpClient.GetAsync($"http://localhost:50200//api/cart-items/getitems/{cartId}").Result;
-            var json = response.Content.ReadAsStringAsync().Result;
-
-            return JsonConvert.DeserializeObject<List<CartItem>>(json);
-             **/
-        }
+        public async Task<List<CartItem>> GetItems(int cartId) => await cartItemClient.GetItems(cartId).ConfigureAwait(false);
     }
 }
