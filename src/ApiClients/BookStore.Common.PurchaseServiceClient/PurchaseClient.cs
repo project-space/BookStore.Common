@@ -1,15 +1,19 @@
 ﻿using BookStore.Common.ApiClients.Design.Abstractions.PurchaseServiceClient;
 using BookStore.Common.ApiClients.Design.Models;
-using System.Threading.Tasks;
-using Refit;
 using BookStore.Common.PurchaseServiceClient.IClients_Refit_;
+using Refit;
+using SettingsManager;
+using System.Threading.Tasks;
+using static SettingsManager.SettingsManager;
 
 namespace BookStore.Common.PurchaseServiceClient
 {
     public class PurchaseClient : IPurchaseClient
     {
-        private readonly IPurchaseClientR purchaseClient = RestService.For<IPurchaseClientR>("http://localhost:50200/");
+        private static readonly string baseUrl = Read(Settings.PurchaseServiceEndPoint);
 
-        public async Task<int> CreatePurchase(Order order) => await purchaseClient.CreatePurchase(order).ConfigureAwait(false);
+        private readonly IPurchaseClientR purchaseClient = RestService.For<IPurchaseClientR>(baseUrl);
+
+        public Task<int> CreatePurchase(Order order) => purchaseClient.CreatePurchase(order);
     }
 }

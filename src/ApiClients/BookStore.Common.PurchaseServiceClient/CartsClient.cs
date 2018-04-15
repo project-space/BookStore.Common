@@ -1,15 +1,19 @@
 ﻿using BookStore.Common.ApiClients.Design.Abstractions.PurchaseServiceClient;
 using BookStore.Common.ApiClients.Design.Models;
-using System.Threading.Tasks;
-using Refit;
 using BookStore.Common.PurchaseServiceClient.IClients_Refit_;
+using Refit;
+using SettingsManager;
+using System.Threading.Tasks;
+using static SettingsManager.SettingsManager;
 
 namespace BookStore.Common.PurchaseServiceClient
 {
     public class CartsClient : ICartsClient
     {
-        private readonly ICartsClientR cartsClient = RestService.For<ICartsClientR>("http://localhost:50200/");
+        private static readonly string baseUrl = Read(Settings.PurchaseServiceEndPoint);
 
-        public async Task<Cart> GetCart() => await cartsClient.GetCart().ConfigureAwait(false);
+        private readonly ICartsClientR cartsClient = RestService.For<ICartsClientR>(baseUrl);
+
+        public Task<Cart> GetCart() => cartsClient.GetCart();
     }
 }

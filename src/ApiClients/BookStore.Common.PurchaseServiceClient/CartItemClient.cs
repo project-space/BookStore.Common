@@ -1,20 +1,24 @@
 ﻿using BookStore.Common.ApiClients.Design.Abstractions.PurchaseServiceClient;
 using BookStore.Common.ApiClients.Design.Models;
 using BookStore.Common.PurchaseServiceClient.IClients_Refit_;
+using Refit;
+using SettingsManager;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Refit;
+using static SettingsManager.SettingsManager;
 
 namespace BookStore.Common.PurchaseServiceClient
 {
     public class CartItemClient : ICartItemClient
     {
-        private readonly ICartItemClientR cartItemClient = RestService.For<ICartItemClientR>("http://localhost:50200/");
+        private static readonly string baseUrl = Read(Settings.PurchaseServiceEndPoint);
 
-        public async Task<int> AddCartItem(CartItem item) => await cartItemClient.AddCartItem(item).ConfigureAwait(false);
+        private readonly ICartItemClientR cartItemClient = RestService.For<ICartItemClientR>(baseUrl);
 
-        public async Task DeleteCartItem(int id) => await cartItemClient.DeleteCartItem(id).ConfigureAwait(false);
+        public Task<int> AddCartItem(CartItem item) => cartItemClient.AddCartItem(item);
 
-        public async Task<List<CartItem>> GetItems(int cartId) => await cartItemClient.GetItems(cartId).ConfigureAwait(false);
+        public Task DeleteCartItem(int id) => cartItemClient.DeleteCartItem(id);
+
+        public Task<List<CartItem>> GetItems(int cartId) => cartItemClient.GetItems(cartId);
     }
 }

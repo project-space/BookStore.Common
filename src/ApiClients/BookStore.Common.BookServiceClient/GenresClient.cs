@@ -1,18 +1,22 @@
 ﻿using BookStore.Common.ApiClients.Design.Abstractions.BookServiceClient;
 using BookStore.Common.ApiClients.Design.Models;
 using BookStore.Common.BookServiceClient.IClients_Refit_;
+using Refit;
+using SettingsManager;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Refit;
+using static SettingsManager.SettingsManager;
 
 namespace BookStore.Common.BookServiceClient
 {
     public class GenresClient : IGenresClient
     {
-        private readonly IGenresClientR genresClient = RestService.For<IGenresClientR>("http://localhost:55328/");
+        private static readonly string baseUrl = Read(Settings.BookServiceEndPoint);
 
-        public async Task<Genre> GetGenre(int id) => await genresClient.GetGenre(id).ConfigureAwait(false);
+        private readonly IGenresClientR genresClient = RestService.For<IGenresClientR>(baseUrl);
 
-        public async Task<List<Genre>> GetGenres() => await genresClient.GetGenres().ConfigureAwait(false);
+        public Task<Genre> GetGenre(int id) => genresClient.GetGenre(id);
+
+        public Task<List<Genre>> GetGenres() => genresClient.GetGenres();
     }
 }
